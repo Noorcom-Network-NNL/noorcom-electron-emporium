@@ -17,9 +17,7 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Helper for nav link active style
   const isActive = (dest: string) => {
-    // Home path needs exact match, otherwise match substring
     if (dest === "/") return location.pathname === "/";
     return location.pathname.startsWith(dest);
   };
@@ -60,8 +58,8 @@ const Header: React.FC = () => {
               </span>
               info@noorcom.co.ke
             </span>
-            <User className="w-5 h-5 cursor-pointer hover:text-red-400" title="Account" />
-            <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-red-400" title="Cart" />
+            <User className="w-5 h-5 cursor-pointer hover:text-red-400" />
+            <ShoppingCart className="w-5 h-5 cursor-pointer hover:text-red-400" />
           </div>
         </div>
       </div>
