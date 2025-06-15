@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Shop from "./pages/Shop";
 import Contact from "./pages/Contact";
 import Layout from "./components/Layout";
+import AuthRegister from "./components/auth/AuthRegister";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,8 @@ const App = () => (
             <Route path="/shop" element={<Shop />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<Admin />} />
+            {/* Registration route */}
+            <Route path="/register" element={<AuthRegister />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
