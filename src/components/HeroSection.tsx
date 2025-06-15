@@ -1,14 +1,19 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
   return (
-    <section className="relative bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 text-white py-20 px-4 overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj4KPGcgZmlsbD0iIzAwMCIgZmlsbC1vcGFjaXR5PSIwLjAzIj4KPHBhdGggZD0iTTM2IDM0djItaC0ydjJoLTJ2MmgtMnYyaC0ydjJIMjR2LTJoMnYtMmgydi0yaDJ2LTJoMnYtMmgydi0yaDJ2LTJoMnYtMmgydi0yaDJ2LTJoMnYtMmgydi0yaDJWMTZoMnYtMmgyVjEwaDJWOGgyVjZoMlY0aDJWMmgyVjBoNHYyaDJWNGgyVjZoMlY4aDJWMTBoMlYxNGgyVjE2aDJWMjBoMlYyMmgyVjI0aDJWMjZoMlYyOGgyVjMwaDJWMzJoMlYzNGgyVjM2aDJWMzhoMlY0MGgyVjQyaDJWNDRoMlY0NmgyVjQ4aDJWNTBoMlY1MmgyVjU0aDJWNTZoMlY1OGgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMnYtMmgtMlYzNnoiLz4KPC9nPgo8L2c+Cjwvc3ZnPgo=')] bg-repeat"></div>
-      </div>
+    <section className="relative text-white py-20 px-4 overflow-hidden min-h-[600px] flex items-center">
+      {/* Background image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('/lovable-uploads/3a37ff4e-a058-4951-9883-cf01c86c2f33.png')`
+        }}
+      ></div>
+      
+      {/* Overlay for better text readability */}
+      <div className="absolute inset-0 bg-black bg-opacity-50"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -22,7 +27,7 @@ const HeroSection = () => {
               </span>
             </h1>
             
-            <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+            <p className="text-xl text-gray-200 leading-relaxed max-w-lg">
               Discover the latest in computing, mobile devices, networking equipment and more. 
               Quality products with exceptional service.
             </p>
@@ -37,21 +42,8 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Tech visualization */}
-          <div className="relative hidden lg:block">
-            <div className="absolute inset-0 bg-gradient-to-r from-red-600/20 to-blue-600/20 rounded-lg blur-xl"></div>
-            <div className="relative bg-slate-700/50 rounded-lg p-8 border border-slate-600">
-              <div className="grid grid-cols-3 gap-4">
-                {[...Array(9)].map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-16 bg-gradient-to-br from-slate-600 to-slate-700 rounded-md flex items-center justify-center border border-slate-500 hover:border-red-400 transition-colors duration-300"
-                  >
-                    <div className="w-8 h-8 bg-red-500/20 rounded-full"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
+          {/* Right side - keep empty for better focus on the background image */}
+          <div className="hidden lg:block">
           </div>
         </div>
       </div>
