@@ -1,9 +1,11 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { getFirestore, collection, getDocs, QueryDocumentSnapshot, DocumentData } from "firebase/firestore";
+import { app } from "@/lib/firebase";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 
 const AdminPortal = () => {
   const [products, setProducts] = useState([
@@ -48,6 +50,32 @@ const AdminPortal = () => {
   };
 
   const categories = ['Computing', 'Phones & Tablets', 'Networking Equipment', 'Office Equipment', 'Smart Accessories'];
+
+  // NEW STATE FOR USERS
+  const [users, setUsers] = useState<any[]>([]);
+  const [loadingUsers, setLoadingUsers] = useState(false);
+
+  // Fetch users from Firestore when "Customers" tab is rendered the first time.
+  useEffect(() => {
+    const fetchUsers = async () => {
+      setLoadingUsers(true);
+      try {
+        const db = getFirestore(app);
+        const usersCol = collection(db, "users");
+        const userSnap = await getDocs(usersCol);
+        const userList = userSnap.docs.map((doc: QueryDocumentSnapshot<DocumentData>) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setUsers(userList);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+      } finally {
+        setLoadingUsers(false);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-100 p-6">
@@ -187,7 +215,50 @@ const AdminPortal = () => {
                 <CardTitle>Customer Management</CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-gray-600">Customer management features coming soon...</p>
+                {loadingUsers ? (
+                  <p className="text-gray-500">Loading users...</p>
+                ) : users && users.length > 0 ? (
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead>Email</TableHead>
+                          <TableHead>Name</TableHead>
+                          <TableHead>Role</TableHead>
+                          <TableHead>Created</TableHead>
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {users.map((user) => (
+                          <TableRow key={user.id}>
+                            <TableCell>{user.email}</TableCell>
+                            <TableCell>{user.displayName || "-"}</TableCell>
+                            <TableCell>
+                              {user.role ? (
+                                <span className="px-2 py-1 rounded bg-green-100 text-green-700 text-xs">
+                                  {user.role}
+                                </span>
+                              ) : (
+                                <span className="px-2 py-1 rounded bg-gray-100 text-gray-500 text-xs">
+                                  customer
+                                </span>
+                              )}
+                            </TableCell>
+                            <TableCell>
+                              {user.createdAt && user.createdAt.seconds ? (
+                                new Date(user.createdAt.seconds * 1000).toLocaleDateString()
+                              ) : (
+                                "-"
+                              )}
+                            </TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  </div>
+                ) : (
+                  <p className="text-gray-600">No users found yet.</p>
+                )}
               </CardContent>
             </Card>
           </TabsContent>
