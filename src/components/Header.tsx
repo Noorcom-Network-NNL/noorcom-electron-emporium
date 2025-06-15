@@ -36,11 +36,17 @@ const Header = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/")}>
-                NOOR<span className="text-red-500">COM</span>
-              </h1>
-              <p className="text-xs text-gray-300 ml-2 hidden md:block">QUALITY PRODUCTS & SERVICES</p>
+            <div
+              className="flex flex-col cursor-pointer select-none"
+              onClick={() => navigate("/")}
+            >
+              <span className="flex items-end gap-0.5">
+                <span className="text-2xl md:text-3xl font-extrabold text-black dark:text-white tracking-tight leading-none" style={{ letterSpacing: 1 }}>NOOR</span>
+                <span className="text-2xl md:text-3xl font-extrabold text-red-600 tracking-tight leading-none" style={{ letterSpacing: 1 }}>COM</span>
+              </span>
+              <span className="text-xs md:text-sm font-medium text-slate-700 dark:text-slate-200 tracking-wide mt-1" style={{letterSpacing:"0.1em"}}>
+                QUALITY PRODUCTS &amp; SERVICES
+              </span>
             </div>
 
             {/* Desktop Navigation */}
@@ -154,3 +160,4 @@ const Header = () => {
 };
 
 export default Header;
+
