@@ -1,10 +1,10 @@
-
 import React, { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectItem, SelectTrigger, SelectContent, SelectValue } from "@/components/ui/select";
 import ProductCard from "@/components/ProductCard";
 import { Star } from "lucide-react";
+import Footer from "@/components/Footer";
 
 // Demo products matching screenshot structure
 const DUMMY_PRODUCTS = [
@@ -140,8 +140,8 @@ const Shop = () => {
   if (sort === "price-desc") filtered.sort((a, b) => b.price - a.price);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 px-2 md:px-6">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-gray-50 py-8 px-2 md:px-6 flex flex-col">
+      <div className="max-w-7xl mx-auto flex-1 w-full">
         {/* Headline */}
         <div className="text-center mb-8">
           <h1 className="text-3xl md:text-4xl font-bold text-gray-800 mb-2">Shop Electronics</h1>
@@ -267,9 +267,9 @@ const Shop = () => {
           </section>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
 
 export default Shop;
-
