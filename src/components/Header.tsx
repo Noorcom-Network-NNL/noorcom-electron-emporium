@@ -3,9 +3,11 @@ import React, { useState } from 'react';
 import { Search, User, ShoppingCart, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <header className="bg-slate-800 text-white">
@@ -35,7 +37,7 @@ const Header = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
-              <h1 className="text-2xl font-bold">
+              <h1 className="text-2xl font-bold cursor-pointer" onClick={() => navigate("/")}>
                 NOOR<span className="text-red-500">COM</span>
               </h1>
               <p className="text-xs text-gray-300 ml-2 hidden md:block">QUALITY PRODUCTS & SERVICES</p>
@@ -43,10 +45,30 @@ const Header = () => {
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-red-400 hover:text-red-300 transition-colors">Home</a>
-              <a href="#" className="hover:text-red-400 transition-colors">About Us</a>
-              <a href="#" className="hover:text-red-400 transition-colors">Shop</a>
-              <a href="#" className="hover:text-red-400 transition-colors">Contact</a>
+              <button
+                className="text-red-400 hover:text-red-300 transition-colors"
+                onClick={() => navigate("/")}
+              >
+                Home
+              </button>
+              <button
+                className="hover:text-red-400 transition-colors"
+                onClick={() => navigate("/about")}
+              >
+                About Us
+              </button>
+              <button
+                className="hover:text-red-400 transition-colors"
+                onClick={() => navigate("#shop")}
+              >
+                Shop
+              </button>
+              <button
+                className="hover:text-red-400 transition-colors"
+                onClick={() => navigate("#contact")}
+              >
+                Contact
+              </button>
             </nav>
 
             {/* Mobile menu button */}
@@ -86,10 +108,42 @@ const Header = () => {
           {isMenuOpen && (
             <nav className="md:hidden mt-4 py-4 border-t border-gray-600">
               <div className="flex flex-col space-y-2">
-                <a href="#" className="py-2 text-red-400 hover:text-red-300 transition-colors">Home</a>
-                <a href="#" className="py-2 hover:text-red-400 transition-colors">About Us</a>
-                <a href="#" className="py-2 hover:text-red-400 transition-colors">Shop</a>
-                <a href="#" className="py-2 hover:text-red-400 transition-colors">Contact</a>
+                <button
+                  className="py-2 text-red-400 hover:text-red-300 transition-colors text-left"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate("/");
+                  }}
+                >
+                  Home
+                </button>
+                <button
+                  className="py-2 hover:text-red-400 transition-colors text-left"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate("/about");
+                  }}
+                >
+                  About Us
+                </button>
+                <button
+                  className="py-2 hover:text-red-400 transition-colors text-left"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate("#shop");
+                  }}
+                >
+                  Shop
+                </button>
+                <button
+                  className="py-2 hover:text-red-400 transition-colors text-left"
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    navigate("#contact");
+                  }}
+                >
+                  Contact
+                </button>
               </div>
             </nav>
           )}
