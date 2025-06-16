@@ -8,6 +8,7 @@ import NewArrivals from '@/components/NewArrivals';
 import TrustIndicators from '@/components/TrustIndicators';
 import Newsletter from '@/components/Newsletter';
 import Footer from '@/components/Footer';
+import WhatsAppChat from '@/components/WhatsAppChat';
 
 const Index = () => {
   return (
@@ -20,6 +21,7 @@ const Index = () => {
       <TrustIndicators />
       <Newsletter />
       <Footer />
+      <WhatsAppChat />
     </div>
   );
 };
